@@ -95,7 +95,7 @@ export function BlurredBackground({
           opacity: 0.75,
         }}
       >
-        {backgroundImages.map((image, idx) => (
+        {backgroundImages.map((image) => (
           <Item
             isActive={image.id === currentIdBackground}
             key={image.id}
@@ -112,7 +112,7 @@ export function BlurredBackground({
             position: "absolute",
           }}
           // TODO to see
-          // @ts-ignore
+          // @ts-expect-error to see
           overlayColor="transparent"
         />
       )}
@@ -134,24 +134,22 @@ function Item({ image, isActive }: ItemProps) {
   }, [isActive]);
 
   return (
-    <>
-      <Animated.View
+    <Animated.View
+      style={{
+        width: "100%",
+        height: "100%",
+        opacity: fadeAnim,
+        position: "absolute",
+      }}
+    >
+      <Image
+        source={image}
         style={{
+          objectFit: "cover",
           width: "100%",
           height: "100%",
-          opacity: fadeAnim,
-          position: "absolute",
         }}
-      >
-        <Image
-          source={image as ImageSourcePropType}
-          style={{
-            objectFit: "cover",
-            width: "100%",
-            height: "100%",
-          }}
-        />
-      </Animated.View>
-    </>
+      />
+    </Animated.View>
   );
 }

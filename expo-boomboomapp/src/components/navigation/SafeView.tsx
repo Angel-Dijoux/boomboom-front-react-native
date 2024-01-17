@@ -3,6 +3,7 @@ import {
   type NativeSafeAreaViewProps,
   SafeAreaView,
 } from "react-native-safe-area-context";
+
 import useEStyles from "../../hooks/useEStyles";
 
 type SafeViewProps = NativeSafeAreaViewProps;

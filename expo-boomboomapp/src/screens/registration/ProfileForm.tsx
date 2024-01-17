@@ -1,7 +1,9 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
-import { View } from "react-native";
-
 import { useForm } from "react-hook-form";
+import { View } from "react-native";
+import * as yup from "yup";
+
 import { StepProps } from "../../components/ScreenStepperLayout";
 import {
   UserProfileForm,
@@ -11,8 +13,6 @@ import UserService from "../../services/UserService/UserService";
 import { Gender } from "../../services/UserService/userServiceI";
 import ServiceInterface from "../../tsyringe/ServiceInterface";
 import { getGlobalInstance } from "../../tsyringe/diUtils";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 export function ProfileForm({ setStepperLayoutCallback }: StepProps) {
   const userService = getGlobalInstance<UserService>(
@@ -25,7 +25,7 @@ export function ProfileForm({ setStepperLayoutCallback }: StepProps) {
     formState: { errors },
   } = useForm<UserFormData>({
     // TODO I18n
-    // @ts-ignore TODO
+    // @ts-expect-error TODO
     resolver: yupResolver(
       yup.object().shape({
         fullName: yup

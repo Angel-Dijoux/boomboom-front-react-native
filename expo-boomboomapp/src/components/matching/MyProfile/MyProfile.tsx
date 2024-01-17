@@ -1,4 +1,7 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Redirect, router } from "expo-router";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import {
   Button,
   Image,
@@ -7,9 +10,10 @@ import {
   Text,
   View,
 } from "react-native";
+import * as yup from "yup";
 
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { ProfileApiService } from "../../../api/ProfileApiService/ProfileApiService";
+import useEStyles from "../../../hooks/useEStyles";
 import { RootStackScreen } from "../../../navigation/RootStackScreenNavigator/RootStack";
 import AuthService from "../../../services/AuthService/AuthService";
 import LanguageService from "../../../services/LanguageService/LanguageService";
@@ -21,10 +25,6 @@ import { getGlobalInstance } from "../../../tsyringe/diUtils";
 import { BaseButton } from "../../Buttons/BaseButton";
 import { Screen } from "../../navigation/Screen";
 import { UserFormData, UserProfileForm } from "../common/UserProfileForm";
-import useEStyles from "../../../hooks/useEStyles";
-import { ProfileApiService } from "../../../api/ProfileApiService/ProfileApiService";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 const CONTENT_PADDING = 30;
 
@@ -65,7 +65,7 @@ export function MyProfile({ onBack }: MyProfileProps) {
     reset,
   } = useForm<Partial<UserFormData>>({
     // TODO I18n
-    // @ts-ignore TODO
+    // @ts-expect-error Maybe we should add `optional` input
     resolver: yupResolver(
       yup.object().shape({
         fullName: yup
@@ -127,7 +127,7 @@ export function MyProfile({ onBack }: MyProfileProps) {
 
       <View style={{ padding: CONTENT_PADDING }}>
         <UserProfileForm
-          // @ts-ignore TODO UserProfileForm
+          // @ts-expect-error TODO UserProfileForm
           control={control}
           errors={errors}
         />

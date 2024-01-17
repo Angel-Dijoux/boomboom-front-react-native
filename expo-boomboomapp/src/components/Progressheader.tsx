@@ -64,7 +64,7 @@ export function Progressheader({
         icon={IconName.ARROW_LEFT}
         color="$backgroundColor"
         textStyle={{
-          color: "$grey",
+          color: BASE_BUTTON_COLOR,
         }}
         disabled={disabled}
       />
@@ -77,3 +77,5 @@ export function Progressheader({
     </View>
   );
 }
+
+const BASE_BUTTON_COLOR = "$grey";

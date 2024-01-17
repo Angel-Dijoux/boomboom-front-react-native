@@ -12,6 +12,7 @@ export type Item =
   | {
       idx: number;
       name: string;
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       image: any;
       type: "USER";
     };

@@ -17,7 +17,7 @@ export type StackProfileI = {
   user: {
     id: string;
     name: string;
-    image: any;
+    image: unknown;
   };
   songs: Track[];
 };

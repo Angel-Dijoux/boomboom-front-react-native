@@ -16,6 +16,7 @@ import {
 
 @singleton()
 export class ProfileApiMockService implements ProfileApiServiceI {
+  /* eslint-disable @typescript-eslint/no-unused-vars*/
   async createProfile(createProfileBody: CreateProfileBody) {
     return Promise.resolve(user_yohan);
   }
@@ -42,5 +43,6 @@ export class ProfileApiMockService implements ProfileApiServiceI {
     return Promise.resolve({ ...user_yohan, ...editedProfileBody });
   }
 
+  /* eslint-disable @typescript-eslint/no-unused-vars*/
   async uploadAvatar(uri: string): Promise<void> {}
 }

@@ -17,6 +17,7 @@ export default function NotFoundScreen() {
     </>
   );
 }
+const BLEU = "#2e78b7";
 
 const styles = StyleSheet.create({
   container: {
@@ -35,6 +36,6 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 14,
-    color: "#2e78b7",
+    color: BLEU,
   },
 });

@@ -43,7 +43,7 @@ export default function SplashScreen(): JSX.Element {
         router.replace(`/${RootStackScreen.AUTH_HOME}`);
       })
       // TODO handle catch better
-      .catch((err: any) => {
+      .catch((err: unknown) => {
         console.error(err);
         router.replace(`/${RootStackScreen.AUTH_HOME}`);
       });

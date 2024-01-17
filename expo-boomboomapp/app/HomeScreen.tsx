@@ -35,8 +35,8 @@ export default function HomeScreen(): JSX.Element {
   useEffect(() => {
     profileApiService
       .getStackProfiles()
-      .then((stackProfiles) => {
-        setStackProfiles(stackProfiles);
+      .then((stack) => {
+        setStackProfiles(stack);
       })
       .catch((err) => {
         // TODO handle error better
@@ -82,7 +82,7 @@ export default function HomeScreen(): JSX.Element {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-        setStackProfiles((stackProfiles) => [...stackProfiles.slice(1)]);
+        setStackProfiles((stack) => [...stack.slice(1)]);
       }, 400);
     });
     return () => {
@@ -96,8 +96,8 @@ export default function HomeScreen(): JSX.Element {
       profileApiService
         .getStackProfiles()
         .then((newStackProfiles) => {
-          setStackProfiles((stackProfiles) => [
-            ...stackProfiles,
+          setStackProfiles((stack) => [
+            ...stack,
             newStackProfiles[
               Math.floor(Math.random() * newStackProfiles.length)
             ],

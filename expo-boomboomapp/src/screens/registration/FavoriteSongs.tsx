@@ -2,6 +2,7 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
+import { ProfileApiServiceI } from "../../api/ProfileApiService/ProfileApiServiceI";
 import { Track } from "../../api/SpotifyApiService/SpotifyApiServiceI";
 import { BaseButton } from "../../components/Buttons/BaseButton";
 import { IconName } from "../../components/Icons/IconName";
@@ -11,11 +12,10 @@ import { SongPicker } from "../../components/SongPicker";
 import useEStyles from "../../hooks/useEStyles";
 import { RootStackScreen } from "../../navigation/RootStackScreenNavigator/RootStack";
 import { useCoreStyles } from "../../services/StyleService/styles";
-import { getGlobalInstance } from "../../tsyringe/diUtils";
-import ServiceInterface from "../../tsyringe/ServiceInterface";
-import { ProfileApiServiceI } from "../../api/ProfileApiService/ProfileApiServiceI";
 import UserService from "../../services/UserService/UserService";
 import { UserStateConnected } from "../../services/UserService/userServiceI";
+import ServiceInterface from "../../tsyringe/ServiceInterface";
+import { getGlobalInstance } from "../../tsyringe/diUtils";
 
 // TODO use styles
 const CONTENT_PADDING = 20;
@@ -45,7 +45,7 @@ export default function FavoriteSongs({ setStepperLayoutCallback }: StepProps) {
     },
   });
 
-  // @ts-ignore TODO useUser
+  // @ts-expect-error TODO useUser
   const user: UserStateConnected = userService.useUser();
 
   function searchSong() {

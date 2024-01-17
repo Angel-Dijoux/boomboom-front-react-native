@@ -74,8 +74,8 @@ export function SongPicker({
     onBack();
   }
 
-  function pick(song: Track) {
-    setMySongs((old) => [...old, song]);
+  function pick(newSong: Track) {
+    setMySongs((old) => [...old, newSong]);
     onBack();
   }
 
@@ -148,17 +148,19 @@ export function SongPicker({
             <View style={styles.fetchedSongsContainer}>
               {fetchedSongs
                 .filter(
-                  (song) =>
-                    !mySongs.find((mySong) => mySong.name === song.name),
+                  (filteredSong) =>
+                    !mySongs.find(
+                      (mySong) => mySong.name === filteredSong.name,
+                    ),
                 )
-                .map((song, index) => (
+                .map((songItem) => (
                   <SongCard
-                    song={song}
-                    key={song.trackId}
+                    song={songItem}
+                    key={songItem.trackId}
                     icon={() => (
                       <BaseButton
                         icon={IconName.PLUS}
-                        onPress={() => pick(song)}
+                        onPress={() => pick(songItem)}
                       />
                     )}
                   />

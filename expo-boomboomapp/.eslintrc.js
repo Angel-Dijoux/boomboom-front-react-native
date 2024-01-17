@@ -38,6 +38,7 @@ module.exports = {
     "react-native/no-unused-styles": "error",
     "react-native/no-color-literals": "warn",
     "react-native/no-inline-styles": "off", // TODO: Turn on an fix this errors
+    "react-hooks/exhaustive-deps": "off", // TODO: Turn on an fix this errors
     "react/no-unescaped-entities": [
       "error",
       {

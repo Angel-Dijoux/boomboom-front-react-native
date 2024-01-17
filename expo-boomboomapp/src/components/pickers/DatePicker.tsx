@@ -11,6 +11,7 @@ import { type UserFormData } from "../matching/common/UserProfileForm";
 
 type DatePickerProps = {
   title: string;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   control: Control<UserFormData, any>;
 };
 
@@ -31,12 +32,12 @@ export function DatePicker({ title, control }: Readonly<DatePickerProps>) {
       controllerOnChange(formatDate(currentDate));
     };
 
-  function formatDate(date: Date): string {
+  function formatDate(dateToFormat: Date): string {
     // Padding function to ensure day and month are always two digits
     const pad = (num: number) => (num < 10 ? `0${num}` : num);
-    const year = date.getFullYear();
-    const month = pad(date.getMonth() + 1);
-    const day = pad(date.getDate());
+    const year = dateToFormat.getFullYear();
+    const month = pad(dateToFormat.getMonth() + 1);
+    const day = pad(dateToFormat.getDate());
     return `${year}-${month}-${day}`;
   }
 
@@ -55,7 +56,7 @@ export function DatePicker({ title, control }: Readonly<DatePickerProps>) {
       control={control}
       name="dateOfBirth"
       defaultValue={formatDate(new Date())}
-      render={({ field: { onChange: controllerOnChange, onBlur, value } }) => (
+      render={({ field: { onChange: controllerOnChange } }) => (
         <View>
           <Text style={{ ...coreStyles.P }}>{title}</Text>
           <View>

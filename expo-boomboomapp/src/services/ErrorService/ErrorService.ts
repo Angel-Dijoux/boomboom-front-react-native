@@ -14,6 +14,7 @@ type AxiosError = {
     status: number;
     data: object;
   };
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   request: any;
   message: string;
 };

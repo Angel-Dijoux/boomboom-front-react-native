@@ -1,5 +1,4 @@
 import * as ImagePicker from "expo-image-picker";
-import { useState } from "react";
 import {
   Image,
   ImageSourcePropType,
@@ -13,9 +12,9 @@ import iconUser from "../../assets/Registration/icon_user.png";
 import { StepProps } from "../../components/ScreenStepperLayout";
 import useEStyles from "../../hooks/useEStyles";
 import UserService from "../../services/UserService/UserService";
+import { UserStateConnected } from "../../services/UserService/userServiceI";
 import ServiceInterface from "../../tsyringe/ServiceInterface";
 import { getGlobalInstance } from "../../tsyringe/diUtils";
-import { UserStateConnected } from "../../services/UserService/userServiceI";
 
 const CIRCLE_SIZE = 200;
 
@@ -28,7 +27,7 @@ export default function UploadAvatar({ setStepperLayoutCallback }: StepProps) {
     navigateOnNextStep();
   });
 
-  // @ts-ignore TODO useUser
+  // @ts-expect-error TODO useUser
   const user: UserStateConnected = userService.useUser();
   const image = user.profilePicture.uri as string;
 
@@ -41,13 +40,13 @@ export default function UploadAvatar({ setStepperLayoutCallback }: StepProps) {
     });
 
     if (!result.canceled) {
-      const image = result.assets[0];
+      const gettedImage = result.assets[0];
       // TODO to see if we keep type & name in state
       userService.updateUserState({
         profilePicture: {
-          uri: image.uri as ImageSourcePropType,
-          type: image.type ?? "image",
-          name: image.fileName ?? "",
+          uri: gettedImage.uri as ImageSourcePropType,
+          type: gettedImage.type ?? "image",
+          name: gettedImage.fileName ?? "",
         },
       });
     }

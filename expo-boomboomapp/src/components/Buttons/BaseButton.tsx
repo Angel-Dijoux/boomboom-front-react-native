@@ -4,16 +4,16 @@ import {
   PressableProps,
   StyleProp,
   StyleSheet,
-  Text,
   TextStyle,
   View,
   ViewStyle,
 } from "react-native";
 
+import { BaseButtonContent } from "./components/BaseButtonContent";
+import { BaseButtonIcon } from "./components/BaseButtonIcon";
 import useEStyle from "../../hooks/useEStyle";
 import useEStyles from "../../hooks/useEStyles";
 import { getEStyleSheetValue, styleSheetCompose } from "../../utils/styleUtils";
-import BaseIcon from "../Icons/BaseIcon";
 import { IconName } from "../Icons/IconName";
 
 export enum BaseButtonTheme {
@@ -78,24 +78,6 @@ export const BaseButton = ({
     buttonPressed: {
       opacity: 0.8,
     },
-    title: {
-      fontSize: "$buttonFontSize",
-    },
-    titleContained: {
-      color: "$backgroundColor",
-    },
-    titleOutlined: {
-      color,
-    },
-    titleInline: {
-      color,
-    },
-    iconLeft: {
-      marginRight: "$spacer2",
-    },
-    iconRight: {
-      marginLeft: "$spacer2",
-    },
   });
   const style = useEStyle(_style);
   const iconColor = useMemo(() => {
@@ -110,33 +92,6 @@ export const BaseButton = ({
   }, [theme, color]);
   const iconSize =
     textStyle?.fontSize ?? getEStyleSheetValue<number>("$buttonIconFontSize");
-
-  const Icon = (): null | JSX.Element => {
-    if (!icon) {
-      return null;
-    }
-    return (
-      <BaseIcon
-        name={icon}
-        color={textStyle?.color ?? iconColor}
-        size={iconSize}
-        style={content ? styles[`icon${iconPosition}`] : {}}
-      />
-    );
-  };
-
-  const Content = (): JSX.Element => {
-    const _textStyle = styleSheetCompose(
-      styles.title,
-      styles[`title${theme}`],
-      textStyle,
-    );
-    return typeof content === ("string" || "number") ? (
-      <Text style={_textStyle}>{content as string}</Text>
-    ) : (
-      <>{content}</>
-    );
-  };
 
   return (
     <Pressable
@@ -163,9 +118,32 @@ export const BaseButton = ({
           !noDefaultPadding && styles.buttonWithDefaultPadding,
         )}
       >
-        {iconPosition === BaseButtonIconPosition.LEFT && <Icon />}
-        <Content />
-        {iconPosition === BaseButtonIconPosition.RIGHT && <Icon />}
+        {iconPosition === BaseButtonIconPosition.LEFT && (
+          <BaseButtonIcon
+            color={iconColor}
+            icon={icon}
+            iconPosition={iconPosition}
+            size={iconSize}
+            textStyle={textStyle}
+            isContent={!!content}
+          />
+        )}
+        <BaseButtonContent
+          color={color}
+          content={content}
+          textStyle={textStyle}
+          theme={theme}
+        />
+        {iconPosition === BaseButtonIconPosition.RIGHT && (
+          <BaseButtonIcon
+            color={iconColor}
+            icon={icon}
+            iconPosition={iconPosition}
+            size={iconSize}
+            textStyle={textStyle}
+            isContent={!!content}
+          />
+        )}
       </View>
     </Pressable>
   );

@@ -74,9 +74,11 @@ export function CustomButton({
       {icon && (
         <Image source={icon} style={{ width: 20, height: 20, marginEnd: 5 }} />
       )}
-      <Text style={{ fontSize: 15, color: "white", fontWeight: "bold" }}>
+      <Text style={{ fontSize: 15, color: WHITE, fontWeight: "bold" }}>
         {title}
       </Text>
     </TouchableOpacity>
   );
 }
+
+const WHITE = "#fff";

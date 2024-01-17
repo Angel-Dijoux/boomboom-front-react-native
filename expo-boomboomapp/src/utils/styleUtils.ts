@@ -10,7 +10,7 @@ type StyleSheetCreateFunction = <T>(
 export const createEStyleSheet: StyleSheetCreateFunction = <T>(
   style: T | NamedStyles<T>,
 ) => {
-  // @ts-ignore exception EStyleSheet
+  // @ts-expect-error exception EStyleSheet
   return StyleSheet.create(EStyleSheet.create(style)) as NamedStyles<T>;
 };
 
@@ -23,10 +23,10 @@ export const styleSheetCompose = <T>(
   ...styles: StyleProp<T>[]
 ): T => {
   if (styles.length === 1) {
-    // @ts-ignore
+    // @ts-expect-error merged styles
     return { ...style, ...styles[0] };
   }
   const [style2, ...otherStyles] = styles;
-  // @ts-ignore
+  // @ts-expect-error merged styles
   return styleSheetCompose({ ...style, ...style2 }, ...otherStyles);
 };

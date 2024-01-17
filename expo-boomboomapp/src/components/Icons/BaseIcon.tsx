@@ -114,7 +114,7 @@ const BaseIcon = ({
     }
     return (
       <Image
-        // @ts-ignore image exception
+        // @ts-expect-error image exception
         style={styleSheetCompose<ImageStyle>(eStyle, styles.image)}
         source={iconToRender.svg}
       />

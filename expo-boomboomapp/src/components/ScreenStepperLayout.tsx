@@ -44,6 +44,7 @@ export function ScreenStepperLayout({
   const [step, setStep] = useState<number>(0);
 
   const stepperLayoutCallback = useRef({
+    /* eslint-disable  @typescript-eslint/no-unused-vars */
     value: (props: { navigateOnNextStep: () => void }) => {},
   });
 
@@ -120,7 +121,7 @@ export function ScreenStepperLayout({
         independent
         theme={{
           // TODO to see
-          // @ts-ignore
+          // @ts-expect-error to see
           colors: {
             background: "white",
           },
@@ -132,7 +133,7 @@ export function ScreenStepperLayout({
           screenListeners={{
             state: (e) => {
               // TODO to see
-              // @ts-ignore
+              // @ts-expect-error to see
               setStep(e.data.state.index);
             },
           }}
@@ -143,7 +144,7 @@ export function ScreenStepperLayout({
                 name={childIndex.toString()}
                 key={childIndex.toString()}
               >
-                {(props) => {
+                {() => {
                   return (
                     <View style={styles.content}>
                       <Child

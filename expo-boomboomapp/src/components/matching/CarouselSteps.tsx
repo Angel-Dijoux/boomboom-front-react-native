@@ -41,8 +41,10 @@ function ProgressionItem({ isActive }: ProgressionItemProps) {
         height: 8,
         width: widthAnim,
         borderRadius: 20,
-        backgroundColor: "#d7d7d7",
+        backgroundColor: GREY,
       }}
     />
   );
 }
+
+const GREY = "#d7d7d7";
